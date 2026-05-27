@@ -45,6 +45,12 @@
 
 #include "Common/GameCommon.h"	// ensure we get DUMP_PERF_STATS, or not
 
+#if defined(__APPLE__)
+#include <mach/mach_time.h>
+#elif !defined(_MSC_VER)
+#include <time.h>
+#endif
+
 #ifdef PERF_TIMERS
 #include "GameLogic/GameLogic.h"
 #include "Common/PerfMetrics.h"
@@ -84,7 +90,6 @@ __forceinline void GetPrecisionTimer(Int64* t)
 		MOV [ECX+4], EDX
 	}
 #elif defined(__APPLE__)
-	#include <mach/mach_time.h>
 	*t = (Int64)mach_absolute_time();
 #else
 	// POSIX fallback

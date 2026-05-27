@@ -186,7 +186,7 @@
         static inline uint64_t Platform_GetTicks()
         {
             struct timespec ts;
-            clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
+            clock_gettime(CLOCK_MONOTONIC, &ts);
             return (uint64_t)ts.tv_sec * 1000000000ULL + (uint64_t)ts.tv_nsec;
         }
     #endif
