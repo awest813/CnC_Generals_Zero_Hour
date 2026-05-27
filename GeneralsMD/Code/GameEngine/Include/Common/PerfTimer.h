@@ -26,7 +26,9 @@
 // John McDonald
 // July 2002
 
+#if defined(_MSC_VER)
 #pragma once
+#endif
 
 #ifndef __PERFTIMER_H__
 #define __PERFTIMER_H__
@@ -70,7 +72,7 @@ __forceinline void GetPrecisionTimer(Int64* t)
 {
 #ifdef USE_QPF
 	QueryPerformanceCounter((LARGE_INTEGER*)t);
-#else
+#elif defined(_MSC_VER) && defined(_M_IX86)
 	// CPUID is needed to force serialization of any previous instructions. 
 	__asm 
 	{
@@ -81,6 +83,14 @@ __forceinline void GetPrecisionTimer(Int64* t)
 		MOV [ECX], EAX
 		MOV [ECX+4], EDX
 	}
+#elif defined(__APPLE__)
+	#include <mach/mach_time.h>
+	*t = (Int64)mach_absolute_time();
+#else
+	// POSIX fallback
+	struct timespec ts;
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	*t = (Int64)ts.tv_sec * 1000000000LL + (Int64)ts.tv_nsec;
 #endif
 }
 #endif

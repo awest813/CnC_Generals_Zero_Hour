@@ -1,0 +1,42 @@
+name: macOS Build
+
+on:
+  push:
+    branches: [ main, macos-port ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-macos:
+    strategy:
+      matrix:
+        os: [macos-14]  # Apple Silicon runner
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install Dependencies
+      run: |
+        brew install cmake
+
+    - name: Configure CMake
+      run: |
+        cmake -B build \
+          -DCMAKE_BUILD_TYPE=Debug \
+          -DBUILD_ZEROHOUR=ON \
+          -DBUILD_TOOLS=OFF
+
+    - name: Build
+      run: |
+        cmake --build build --parallel $(sysctl -n hw.ncpu) 2>&1 || true
+        echo "Build attempted — failures expected during early port phases."
+
+    - name: Summary
+      run: |
+        echo "## macOS Build Summary" >> $GITHUB_STEP_SUMMARY
+        echo "- Runner: ${{ matrix.os }}" >> $GITHUB_STEP_SUMMARY
+        echo "- Arch: $(uname -m)" >> $GITHUB_STEP_SUMMARY
+        echo "- CMake: $(cmake --version | head -1)" >> $GITHUB_STEP_SUMMARY
+        echo "- Clang: $(clang --version | head -1)" >> $GITHUB_STEP_SUMMARY
