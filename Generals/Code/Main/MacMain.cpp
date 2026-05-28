@@ -30,6 +30,7 @@ int main(int argc, char** argv)
 	(void)argv;
 
 #ifdef CNC_HAS_SDL3
+	constexpr int event_timeout_ms = 100;
 	const char* product_name = "Command & Conquer Generals";
 	if (!SDL_SetAppMetadata(product_name, "0.0.0", "com.ea.generals")) {
 		std::fprintf(stderr, "%s: SDL_SetAppMetadata failed: %s\n", product_name, SDL_GetError());
@@ -48,7 +49,32 @@ int main(int argc, char** argv)
 	}
 
 	SDL_ShowWindow(window);
-	SDL_PumpEvents();
+	bool running = true;
+	auto handle_event = [&](const SDL_Event& event_to_handle) {
+		if (event_to_handle.type == SDL_EVENT_QUIT) {
+			running = false;
+		} else if (event_to_handle.type == SDL_EVENT_KEY_DOWN && event_to_handle.key.key == SDLK_ESCAPE) {
+			running = false;
+		}
+	};
+
+	while (running) {
+		SDL_Event event;
+		SDL_ClearError();
+		if (!SDL_WaitEventTimeout(&event, event_timeout_ms)) {
+			const char* sdl_error = SDL_GetError();
+			if (sdl_error != nullptr && sdl_error[0] != '\0') {
+				std::fprintf(stderr, "%s: SDL_WaitEventTimeout failed: %s\n", product_name, sdl_error);
+				running = false;
+			}
+			continue;
+		}
+		handle_event(event);
+		while (running && SDL_PollEvent(&event)) {
+			handle_event(event);
+		}
+	}
+
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 	return 0;
