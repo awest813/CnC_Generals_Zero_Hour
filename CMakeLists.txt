@@ -46,10 +46,10 @@ endif()
 
 # ── Subdirectories ────────────────────────────────────────────────────────────
 # These will be added as the port progresses:
-# add_subdirectory(Generals/Code)
-# if(BUILD_ZEROHOUR)
-#     add_subdirectory(GeneralsMD/Code)
-# endif()
+add_subdirectory(Generals/Code)
+if(BUILD_ZEROHOUR)
+    add_subdirectory(GeneralsMD/Code)
+endif()
 
 message(STATUS "")
 message(STATUS "=== CnC Generals Build Configuration ===")

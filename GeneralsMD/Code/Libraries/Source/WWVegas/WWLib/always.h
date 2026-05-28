@@ -41,7 +41,7 @@
 #define ALWAYS_H
 
 // Cross-platform compatibility macros
-#include "Platform.h"
+#include "Platform/Include/Platform.h"
 
 #include <assert.h>
 
