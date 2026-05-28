@@ -49,19 +49,23 @@ int main(int argc, char** argv)
 
 	SDL_ShowWindow(window);
 	bool running = true;
+	auto handle_event = [&](const SDL_Event& event_to_handle) {
+		if (event_to_handle.type == SDL_EVENT_QUIT) {
+			running = false;
+		} else if (event_to_handle.type == SDL_EVENT_KEY_DOWN && event_to_handle.key.key == SDLK_ESCAPE) {
+			running = false;
+		}
+	};
+
 	while (running) {
 		SDL_Event event;
 		if (!SDL_WaitEventTimeout(&event, 100)) {
 			continue;
 		}
-
-		do {
-			if (event.type == SDL_EVENT_QUIT) {
-				running = false;
-			} else if (event.type == SDL_EVENT_KEY_DOWN && event.key.key == SDLK_ESCAPE) {
-				running = false;
-			}
-		} while (running && SDL_PollEvent(&event));
+		handle_event(event);
+		while (running && SDL_PollEvent(&event)) {
+			handle_event(event);
+		}
 	}
 
 	SDL_DestroyWindow(window);
