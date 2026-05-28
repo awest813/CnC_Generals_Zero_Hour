@@ -48,7 +48,19 @@ int main(int argc, char** argv)
 	}
 
 	SDL_ShowWindow(window);
-	SDL_PumpEvents();
+	bool running = true;
+	while (running) {
+		SDL_Event event;
+		while (SDL_PollEvent(&event)) {
+			if (event.type == SDL_EVENT_QUIT) {
+				running = false;
+			} else if (event.type == SDL_EVENT_KEY_DOWN && event.key.key == SDLK_ESCAPE) {
+				running = false;
+			}
+		}
+		SDL_Delay(16);
+	}
+
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 	return 0;
