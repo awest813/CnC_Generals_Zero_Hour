@@ -26,6 +26,9 @@ public:
     explicit ScopedCriticalSection(ICriticalSection& section) : m_section(section) { m_section.Lock(); }
     ~ScopedCriticalSection() { m_section.Unlock(); }
 
+    ScopedCriticalSection(const ScopedCriticalSection&) = delete;
+    ScopedCriticalSection& operator=(const ScopedCriticalSection&) = delete;
+
 private:
     ICriticalSection& m_section;
 };

@@ -26,7 +26,7 @@ inline std::string Normalize(const std::string& path)
     return path;
 #else
     std::string normalized = path;
-    std::replace(normalized.begin(), normalized.end(), '\', '/');
+    std::replace(normalized.begin(), normalized.end(), '\\', '/');
     return normalized;
 #endif
 }
@@ -48,7 +48,7 @@ inline std::string UserDataDirectory()
 #if defined(__APPLE__)
     return Normalize(base + "/Library/Application Support/CnCGenerals/");
 #elif defined(_WIN32)
-    return ".\";
+    return ".\\";
 #else
     return Normalize(base + "/.local/share/CnCGenerals/");
 #endif
