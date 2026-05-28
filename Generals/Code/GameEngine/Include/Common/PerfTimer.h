@@ -66,6 +66,7 @@ void InitPrecisionTimer();
 void GetPrecisionTimerTicksPerSec(Int64* t);
 
 //-------------------------------------------------------------------------------------------------
+#if defined(_MSC_VER) && defined(_M_IX86)
 __forceinline void GetPrecisionTimer(Int64* t)
 {
 #ifdef USE_QPF
@@ -83,6 +84,12 @@ __forceinline void GetPrecisionTimer(Int64* t)
 	}
 #endif
 }
+#else
+inline void GetPrecisionTimer(Int64* t)
+{
+	__rdtsc_portable((long long*)t);
+}
+#endif // _MSC_VER && _M_IX86
 #endif
 
 //-------------------------------------------------------------------------------------------------

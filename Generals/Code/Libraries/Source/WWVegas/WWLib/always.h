@@ -33,17 +33,22 @@
  *---------------------------------------------------------------------------------------------*
  * Functions:                                                                                  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-#if _MSC_VER >= 1000
+#if defined(_MSC_VER) && _MSC_VER >= 1000
 #pragma once
 #endif // _MSC_VER >= 1000
 
 #ifndef ALWAYS_H
 #define ALWAYS_H
 
+// Cross-platform compatibility shim — must come first.
+#include "Compat.h"
+
 #include <assert.h>
 
 // Disable warning about exception handling not being enabled. It's used as part of STL - in a part of STL we don't use.
+#if defined(_MSC_VER)
 #pragma warning(disable : 4530)
+#endif
 
 /*
 ** Define for debug memory allocation to include __FILE__ and __LINE__ for every memory allocation.

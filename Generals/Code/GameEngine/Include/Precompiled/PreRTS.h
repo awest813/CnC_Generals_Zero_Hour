@@ -29,6 +29,9 @@
 #ifndef __PRERTS_H__
 #define __PRERTS_H__
 
+// Cross-platform compatibility shim — must come before platform checks.
+#include "Lib/Compat.h"
+
 //-----------------------------------------------------------------------------
 // srj sez: this must come first, first, first.
 #define _STLP_USE_NEWALLOC					1
@@ -40,23 +43,32 @@ class STLSpecialAlloc;
 // different .cpp files, so I bit the bullet and included it here.
 // PLEASE DO NOT ABUSE WINDOWS OR IT WILL BE REMOVED ENTIRELY. :-)
 //--------------------------------------------------------------------------------- System Includes 
+#ifdef PLATFORM_WINDOWS
 #define WIN32_LEAN_AND_MEAN
 #include <atlbase.h>
 #include <windows.h>
+#endif // PLATFORM_WINDOWS
 
 #include <assert.h>
 #include <ctype.h>
+#ifdef PLATFORM_WINDOWS
 #include <direct.h>
 #include <EXCPT.H>
+#endif
 #include <float.h>
+#ifdef PLATFORM_WINDOWS
 #include <fstream.h>
 #include <imagehlp.h>
 #include <io.h>
+#endif
 #include <limits.h>
+#ifdef PLATFORM_WINDOWS
 #include <lmcons.h>
 #include <mapicode.h>
+#endif
 #include <math.h>
 #include <memory.h>
+#ifdef PLATFORM_WINDOWS
 #include <mmsystem.h>
 #include <objbase.h>
 #include <ocidl.h>
@@ -65,26 +77,35 @@ class STLSpecialAlloc;
 #include <shlobj.h>
 #include <shlguid.h>
 #include <snmp.h>
+#endif
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
+#ifdef PLATFORM_WINDOWS
 #include <sys/timeb.h>
+#endif
 #include <sys/types.h>
+#ifdef PLATFORM_WINDOWS
 #include <TCHAR.H>
+#endif
 #include <time.h>
+#ifdef PLATFORM_WINDOWS
 #include <vfw.h>
 #include <winerror.h>
 #include <wininet.h>
 #include <winreg.h>
+#endif
 
+#ifdef PLATFORM_WINDOWS
 #ifndef DIRECTINPUT_VERSION
 #	define DIRECTINPUT_VERSION	0x800
 #endif
 
 #include <dinput.h>
+#endif // PLATFORM_WINDOWS
 
 //------------------------------------------------------------------------------------ STL Includes
 // srj sez: no, include STLTypesdefs below, instead, thanks

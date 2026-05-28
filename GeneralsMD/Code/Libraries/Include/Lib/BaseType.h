@@ -32,6 +32,9 @@
 #ifndef _BASE_TYPE_H_
 #define _BASE_TYPE_H_
 
+// Cross-platform compatibility shim — must come before anything else.
+#include "Lib/Compat.h"
+
 #include <math.h>
 #include <string.h>
 
@@ -41,6 +44,7 @@
 **	4069, 4200, 4237, 4103, 4001, 4035, 4164. Makes you wonder, eh?
 */
 
+#if defined(_MSC_VER)
 // "unreferenced inline function has been removed" Yea, so what?
 #pragma warning(disable : 4514)
 
@@ -81,6 +85,7 @@
 
 // 'unreferenced local variable'. good thing to know about...
 #pragma warning(error : 4101)
+#endif // _MSC_VER
 
 #ifndef PI
 #define PI     3.14159265359f
@@ -130,9 +135,9 @@ typedef unsigned char			UnsignedByte;			// 1 byte		USED TO BE "Byte"
 typedef char							Byte;							// 1 byte		USED TO BE "SignedByte"
 typedef char							Char;							// 1 byte of text
 typedef bool							Bool;							// 
-// note, the types below should use "long long", but MSVC doesn't support it yet
-typedef __int64						Int64;							// 8 bytes 
-typedef unsigned __int64	UnsignedInt64;	  	// 8 bytes 
+// note, the types below use "long long" (standard C99/C++11) for portability.
+typedef long long					Int64;							// 8 bytes 
+typedef unsigned long long	UnsignedInt64;	  	// 8 bytes 
 
 #include "Lib/Trig.h"
 
@@ -179,6 +184,7 @@ inline Real deg2rad(Real rad) { return rad * (PI/180); }
 // note, this function depends on the cpu rounding mode, which we set to CHOP every frame, 
 // but apparently tends to be left in unpredictable modes by various system bits of
 // code, so use this function with caution -- it might not round in the way you want.
+#if defined(_MSC_VER) && defined(_M_IX86)
 __forceinline long fast_float2long_round(float f)
 {
 	long i;
@@ -190,9 +196,16 @@ __forceinline long fast_float2long_round(float f)
 
 	return i;
 }
+#else
+inline long fast_float2long_round(float f)
+{
+	return (long)f;
+}
+#endif
 
 // super fast float trunc routine, works always (independent of any FPU modes)
 // code courtesy of Martin Hoffesommer (grin)
+#if defined(_MSC_VER) && defined(_M_IX86)
 __forceinline float fast_float_trunc(float f)
 {
   _asm
@@ -208,8 +221,15 @@ __forceinline float fast_float_trunc(float f)
   }
   return f;
 }
+#else
+inline float fast_float_trunc(float f)
+{
+	return (float)(int)f;
+}
+#endif
 
 // same here, fast floor function
+#if defined(_MSC_VER) && defined(_M_IX86)
 __forceinline float fast_float_floor(float f)
 {
   static unsigned almost1=(126<<23)|0x7fffff;
@@ -217,8 +237,15 @@ __forceinline float fast_float_floor(float f)
     f-=*(float *)&almost1;
   return fast_float_trunc(f);
 }
+#else
+inline float fast_float_floor(float f)
+{
+	return floorf(f);
+}
+#endif
 
 // same here, fast ceil function
+#if defined(_MSC_VER) && defined(_M_IX86)
 __forceinline float fast_float_ceil(float f)
 {
   static unsigned almost1=(126<<23)|0x7fffff;
@@ -226,6 +253,12 @@ __forceinline float fast_float_ceil(float f)
     f+=*(float *)&almost1;
   return fast_float_trunc(f);
 }
+#else
+inline float fast_float_ceil(float f)
+{
+	return ceilf(f);
+}
+#endif
 
 //-------------------------------------------------------------------------------------------------
 #define REAL_TO_INT(x)						((Int)(fast_float2long_round(fast_float_trunc(x))))
