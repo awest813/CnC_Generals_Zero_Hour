@@ -51,14 +51,17 @@ int main(int argc, char** argv)
 	bool running = true;
 	while (running) {
 		SDL_Event event;
-		while (SDL_PollEvent(&event)) {
+		if (!SDL_WaitEventTimeout(&event, 100)) {
+			continue;
+		}
+
+		do {
 			if (event.type == SDL_EVENT_QUIT) {
 				running = false;
 			} else if (event.type == SDL_EVENT_KEY_DOWN && event.key.key == SDLK_ESCAPE) {
 				running = false;
 			}
-		}
-		SDL_Delay(16);
+		} while (running && SDL_PollEvent(&event));
 	}
 
 	SDL_DestroyWindow(window);
