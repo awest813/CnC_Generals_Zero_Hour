@@ -67,10 +67,6 @@
         typedef uint64_t UnsignedInt64;
     #endif
 
-    // Provide __int64 as a macro for legacy code that uses the MSVC spelling.
-    #ifndef __int64
-    #define __int64 long long
-    #endif
 #endif
 
 // ── Inline Forcing ───────────────────────────────────────────────────────────
@@ -169,6 +165,16 @@
     #endif
 #endif
 
+
+// ── Bit Rotates ───────────────────────────────────────────────────────────────
+#if !defined(_WIN32)
+    #ifndef _lrotl
+    #define _lrotl(x, n) (static_cast<long>((static_cast<unsigned long>(x) << ((n) & 31)) | (static_cast<unsigned long>(x) >> ((32 - ((n) & 31)) & 31))))
+    #endif
+    #ifndef _lrotr
+    #define _lrotr(x, n) (static_cast<long>((static_cast<unsigned long>(x) >> ((n) & 31)) | (static_cast<unsigned long>(x) << ((32 - ((n) & 31)) & 31))))
+    #endif
+#endif
 // ── High-Resolution Timer ────────────────────────────────────────────────────
 //
 // Replaces RDTSC / QueryPerformanceCounter on non-Windows platforms.
