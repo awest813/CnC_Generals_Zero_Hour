@@ -60,7 +60,13 @@ int main(int argc, char** argv)
 
 	while (running) {
 		SDL_Event event;
+		SDL_ClearError();
 		if (!SDL_WaitEventTimeout(&event, event_timeout_ms)) {
+			const char* sdl_error = SDL_GetError();
+			if (sdl_error != nullptr && sdl_error[0] != '\0') {
+				std::fprintf(stderr, "%s: SDL_WaitEventTimeout failed: %s\n", product_name, sdl_error);
+				running = false;
+			}
 			continue;
 		}
 		handle_event(event);
