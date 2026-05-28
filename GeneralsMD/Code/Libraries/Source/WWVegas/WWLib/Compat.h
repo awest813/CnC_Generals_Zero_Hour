@@ -247,6 +247,10 @@
 #  ifndef _strdup
 #    define _strdup     strdup
 #  endif
+#  include <alloca.h>
+#  ifndef _alloca
+#    define _alloca     alloca
+#  endif
 #  include <ctype.h>    // for tolower / toupper used below
 
 #  ifndef _strlwr

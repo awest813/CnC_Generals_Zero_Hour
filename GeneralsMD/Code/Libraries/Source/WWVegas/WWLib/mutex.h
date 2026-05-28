@@ -127,6 +127,7 @@ public:
 	{
 		FastCriticalSectionClass& cs;
 	public:
+#if defined(_MSC_VER) && defined(_M_IX86)
 		__forceinline LockClass(FastCriticalSectionClass& critical_section) : cs(critical_section)
 		{
 		  unsigned& nFlag=cs.Flag;
@@ -160,6 +161,15 @@ public:
       BitSet:
         ;
 		}
+#else
+		inline LockClass(FastCriticalSectionClass& critical_section) : cs(critical_section)
+		{
+			// Portable spinlock using GCC/Clang atomics
+			while (__sync_lock_test_and_set(&cs.Flag, 1)) {
+				// spin
+			}
+		}
+#endif
 
 		~LockClass()
 		{

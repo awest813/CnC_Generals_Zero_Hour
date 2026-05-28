@@ -49,6 +49,8 @@
 **	4069, 4200, 4237, 4103, 4001, 4035, 4164. Makes you wonder, eh?
 */
 
+#ifdef PLATFORM_WINDOWS
+
 // When including windows, lets just bump the warning level back to 3...
 #if (_MSC_VER >= 1200)
 #pragma warning(push, 3)
@@ -68,6 +70,8 @@
 #if (_MSC_VER >= 1200)
 #pragma warning(pop)
 #endif
+
+#endif // PLATFORM_WINDOWS
 
 #ifdef _WINDOWS
 extern HINSTANCE	ProgramInstance;

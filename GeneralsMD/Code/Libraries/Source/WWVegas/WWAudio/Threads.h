@@ -38,7 +38,7 @@
 #define __WWAUDIO_THREADS_H
 
 #include "Windows.H"
-#include "Vector.H"
+#include "vector.h"
 #include "mutex.h"
 
 // Forward declarations

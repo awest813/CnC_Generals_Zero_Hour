@@ -46,7 +46,25 @@
 #include "win.h"
 #include <string.h>
 #include <stdarg.h>
+#ifdef _MSC_VER
 #include <tchar.h>
+#else
+#ifndef _TCHAR_DEFINED
+#define _TCHAR_DEFINED
+typedef char TCHAR;
+#define _T(x) x
+#define _tcslen strlen
+#define _tcscpy strcpy
+#define _tcsncpy strncpy
+#define _tcscat strcat
+#define _tcscmp strcmp
+#define _tcsicmp strcasecmp
+#define _stprintf sprintf
+#define _vstprintf vsprintf
+#define _sntprintf snprintf
+#define _tcsclen strlen
+#endif
+#endif
 #include "trim.h"
 #include "wwdebug.h"
 #ifdef _UNIX
@@ -80,7 +98,9 @@ public:
 	StringClass (const StringClass &string, bool hint_temporary = false);
 	StringClass (const TCHAR *string, bool hint_temporary = false);
 	StringClass (TCHAR ch, bool hint_temporary = false);
+#ifdef PLATFORM_WINDOWS
 	StringClass (const WCHAR *string, bool hint_temporary = false);
+#endif
 	~StringClass (void);
 
 	////////////////////////////////////////////////////////////
@@ -92,7 +112,9 @@ public:
 	inline const StringClass &operator= (const StringClass &string);
 	inline const StringClass &operator= (const TCHAR *string);
 	inline const StringClass &operator= (TCHAR ch);
+#ifdef PLATFORM_WINDOWS
 	inline const StringClass &operator= (const WCHAR *string);
+#endif
 
 	const StringClass &operator+= (const StringClass &string);
 	const StringClass &operator+= (const TCHAR *string);
@@ -122,7 +144,7 @@ public:
 
 	void			Erase (int start_index, int char_count);
 	int _cdecl  Format (const TCHAR *format, ...);
-	int _cdecl  Format_Args (const TCHAR *format, const va_list & arg_list );
+	int _cdecl  Format_Args (const TCHAR *format, va_list arg_list );
 
 	// Trim leading and trailing whitespace characters (values <= 32)
 	void Trim(void);
@@ -131,7 +153,9 @@ public:
 	TCHAR *		Peek_Buffer (void);
 	const TCHAR * Peek_Buffer (void) const;
 
+#ifdef PLATFORM_WINDOWS
 	bool Copy_Wide (const WCHAR *source);
+#endif
 
 	////////////////////////////////////////////////////////////
 	//	Static methods
@@ -228,6 +252,7 @@ StringClass::operator= (const TCHAR *string)
 }
 
 
+#ifdef PLATFORM_WINDOWS
 ///////////////////////////////////////////////////////////////////
 //	operator=
 ///////////////////////////////////////////////////////////////////
@@ -240,6 +265,7 @@ StringClass::operator= (const WCHAR *string)
 
 	return (*this);
 }
+#endif
 
 
 ///////////////////////////////////////////////////////////////////
@@ -326,6 +352,7 @@ StringClass::StringClass (const TCHAR *string, bool hint_temporary)
 	return ;
 }
 
+#ifdef PLATFORM_WINDOWS
 ///////////////////////////////////////////////////////////////////
 //	StringClass
 ///////////////////////////////////////////////////////////////////
@@ -341,6 +368,7 @@ StringClass::StringClass (const WCHAR *string, bool hint_temporary)
 	(*this) = string;
 	return ;
 }
+#endif
 
 ///////////////////////////////////////////////////////////////////
 //	~StringClass

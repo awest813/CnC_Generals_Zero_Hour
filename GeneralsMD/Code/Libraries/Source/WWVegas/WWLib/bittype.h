@@ -41,26 +41,44 @@
 #ifndef BITTYPE_H
 #define BITTYPE_H
 
+#include "always.h"
+
 typedef unsigned char	uint8;
 typedef unsigned short	uint16;
-typedef unsigned long	uint32;
+typedef unsigned int	uint32;
 typedef unsigned int    uint;
 
 typedef signed char		sint8;
 typedef signed short		sint16;
-typedef signed long		sint32;
+typedef signed int		sint32;
 typedef signed int      sint;
 
 typedef float				float32;
 typedef double				float64;
 
-typedef unsigned long   DWORD;
+#ifndef DWORD
+typedef unsigned int    DWORD;
+#endif
+#ifndef WORD
 typedef unsigned short	WORD;
+#endif
+#ifndef BYTE
 typedef unsigned char   BYTE;
+#endif
+#ifndef BOOL
 typedef int             BOOL;
+#endif
+#ifndef USHORT
 typedef unsigned short	USHORT;
+#endif
+#ifndef LPCSTR
 typedef const char *		LPCSTR;
+#endif
+#ifndef UINT
 typedef unsigned int    UINT;
-typedef unsigned long   ULONG;
+#endif
+#ifndef ULONG
+typedef unsigned int    ULONG;
+#endif
 
 #endif //BITTYPE_H

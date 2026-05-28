@@ -976,6 +976,7 @@ int INIClass::Get_UUBlock(char const * section, void * block, int len) const
 
 
 
+#ifdef PLATFORM_WINDOWS
 /***********************************************************************************************
  * INIClass::Get_Wide_String -- Get a wide string from an .INI                                 *
  *                                                                                             *
@@ -1063,8 +1064,7 @@ bool INIClass::Put_Wide_String(char const * section, char const * entry, wchar_t
 	}
 	return(true);
 }
-
-
+#endif // PLATFORM_WINDOWS
 
 
 

@@ -65,7 +65,9 @@
 #include "matrix3.h"
 #include "matrix4.h"
 #include "quat.h"
+#ifdef PLATFORM_WINDOWS
 #include "D3dx8math.h"
+#endif
 
 // some static matrices which are sometimes useful
 const Matrix3D Matrix3D::Identity
@@ -513,6 +515,7 @@ void Matrix3D::Obj_Look_At(const Vector3 &p,const Vector3 &t,float roll)
  *=============================================================================================*/
 void Matrix3D::Get_Inverse(Matrix3D & inv) const
 {
+#ifdef PLATFORM_WINDOWS
 	// TODO: Implement the general purpose inverse function here (once we need it :-)
 	//Get_Orthogonal_Inverse(inv);
 
@@ -536,6 +539,10 @@ void Matrix3D::Get_Inverse(Matrix3D & inv) const
 	inv.Row[2][1]=mat4Inv[2][1];
 	inv.Row[2][2]=mat4Inv[2][2];
 	inv.Row[2][3]=mat4Inv[2][3];
+#else
+	// Portable fallback: use orthogonal inverse (valid for rotation+translation matrices)
+	Get_Orthogonal_Inverse(inv);
+#endif
 }
 
 /*********************************************************************************************** 

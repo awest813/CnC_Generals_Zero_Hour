@@ -53,6 +53,8 @@
 #include "osdep.h"
 #endif
 
+#ifdef PLATFORM_WINDOWS
+
 //////////////////////////////////////////////////////////////////////
 //
 //	WideStringClass
@@ -781,6 +783,8 @@ WideStringClass::Convert_To (StringClass &string) const
 {
 	return (string.Copy_Wide (m_Buffer));
 }
+
+#endif // PLATFORM_WINDOWS
 
 #endif //__WIDESTRING_H
 

@@ -33,9 +33,7 @@
 extern "C" {
 	int sysinfo(struct sysinfo *info);
 }
-
-#else
-
+#elif defined(PLATFORM_WINDOWS)
 #include "win.h"
 #include <process.h>
 #endif
@@ -174,7 +172,7 @@ void SecureRandomClass::Generate_Seed(void)
 	int_seeds[5 % int_seed_length]^=info.freeswap;
 	int_seeds[6 % int_seed_length]^=info.procs;
 	int_seeds[7 % int_seed_length]^=info.bufferram;
-#else
+#elif defined(PLATFORM_WINDOWS)
 
 	//
 	// Get free drive space
@@ -203,6 +201,15 @@ void SecureRandomClass::Generate_Seed(void)
 		Seeds[(i+2) % SeedLength]^=user_name[i];
 	}
 
+#else
+	// POSIX fallback: use /dev/urandom
+	FILE *in=fopen("/dev/urandom","r");
+	if (in)
+	{
+		for (i=0; i<SeedLength; i++)
+			Seeds[i]^=fgetc(in); 
+		fclose(in);
+	}
 #endif
 
 	for (i=0; i<int_seed_length; i++)

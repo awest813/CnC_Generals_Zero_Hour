@@ -40,7 +40,7 @@
 #include "WWAudio.H"
 #include "WWDebug.H"
 #include "Utils.H"
-#include "RealCRC.H"
+#include "realcrc.h"
 #include "SoundBuffer.H"
 #include "AudibleSound.H"
 #include "Sound3D.H"

@@ -226,50 +226,50 @@ public:
 			
 	virtual ~MultiListClass(void)
 	{
-		while (!Is_Empty()) {
-			Remove_Head();
+		while (!this->Is_Empty()) {
+			this->Remove_Head();
 		}
 	}
 
 	bool				Add(ObjectType * obj,bool onlyonce = true)
 	{
-		return Internal_Add(obj,onlyonce);
+		return this->Internal_Add(obj,onlyonce);
 	}	
 
 	bool				Add_Tail(ObjectType * obj,bool onlyonce = true)
 	{
-		return Internal_Add_Tail(obj,onlyonce);
+		return this->Internal_Add_Tail(obj,onlyonce);
 	}
 
 	bool				Add_After(ObjectType * obj,const ObjectType * existing_list_member,bool onlyonce = true)
 	{
-		return Internal_Add_After(obj,existing_list_member,onlyonce);
+		return this->Internal_Add_After(obj,existing_list_member,onlyonce);
 	}
 
 	bool				Remove(ObjectType *obj)
 	{
-		return Internal_Remove(obj);
+		return this->Internal_Remove(obj);
 	}
 
 	ObjectType *	Get_Head()
 	{
-		return ((ObjectType*)Internal_Get_List_Head());
+		return ((ObjectType*)this->Internal_Get_List_Head());
 	}
 
 	ObjectType *	Peek_Head()
 	{
-		return ((ObjectType*)Internal_Get_List_Head());
+		return ((ObjectType*)this->Internal_Get_List_Head());
 	}
 
 	ObjectType *	Remove_Head()
 	{
-		return ((ObjectType*)Internal_Remove_List_Head());
+		return ((ObjectType*)this->Internal_Remove_List_Head());
 	}
 
 	void				Reset_List()
 	{
-		while (Get_Head() != NULL) {
-			Remove_Head();
+		while (this->Get_Head() != NULL) {
+			this->Remove_Head();
 		}
 	}
 
@@ -300,20 +300,20 @@ public:
 
 	ObjectType *	Get_Obj(void)
 	{
-		return (ObjectType*)Current_Object();
+		return (ObjectType*)this->Current_Object();
 	}
 
 	ObjectType *	Peek_Obj(void)
 	{
-		return (ObjectType*)Current_Object();
+		return (ObjectType*)this->Current_Object();
 	}
 
 	void				Remove_Current_Object(void)
 	{
 		ObjectType * obj = Peek_Obj();
 		if (obj != NULL) {
-			Next();
-			((MultiListClass<ObjectType> *)List)->Remove(obj);
+			this->Next();
+			((MultiListClass<ObjectType> *)this->List)->Remove(obj);
 		}
 	}
 
@@ -345,15 +345,15 @@ public:
 
 	virtual			~RefMultiListClass(void)
 	{
-		while (!Is_Empty()) {
-			Release_Head();
+		while (!this->Is_Empty()) {
+			this->Release_Head();
 		}
 	}
 
 	bool				Add(ObjectType * obj,bool onlyonce = true)
 	{
 		// if we add the object from our list, add a reference to it
-		bool result = Internal_Add(obj,onlyonce);
+		bool result = this->Internal_Add(obj,onlyonce);
 		if (result == true) {
 			obj->Add_Ref();
 		}
@@ -363,7 +363,7 @@ public:
 	bool				Add_Tail(ObjectType * obj,bool onlyonce = true)
 	{
 		// if we add the object from our list, add a reference to it
-		bool result = Internal_Add_Tail(obj,onlyonce);
+		bool result = this->Internal_Add_Tail(obj,onlyonce);
 		if (result == true) {
 			obj->Add_Ref();
 		}
@@ -373,7 +373,7 @@ public:
 	bool				Add_After(ObjectType * obj,const ObjectType * existing_list_member,bool onlyonce = true)
 	{
 		// if we add the object from our list, add a reference to it
-		bool result = Internal_Add_After(obj,existing_list_member,onlyonce);
+		bool result = this->Internal_Add_After(obj,existing_list_member,onlyonce);
 		if (result == true) {
 			obj->Add_Ref();
 		}
@@ -383,7 +383,7 @@ public:
 	bool				Remove(ObjectType *obj)
 	{
 		// if we remove the object from our list, release our reference to it
-		bool result = Internal_Remove(obj);
+		bool result = this->Internal_Remove(obj);
 		if (result) {
 			obj->Release_Ref();
 		}
@@ -393,7 +393,7 @@ public:
 	bool				Release_Head(void)
 	{
 		// remove the head from the list and release our reference to it
-		ObjectType * obj = ((ObjectType*)Internal_Remove_List_Head());
+		ObjectType * obj = ((ObjectType*)this->Internal_Remove_List_Head());
 		if (obj) {
 			obj->Release_Ref();
 			return true;
@@ -405,7 +405,7 @@ public:
 	ObjectType *	Get_Head()
 	{
 		// if we have a head, add a reference for the caller of this function
-		ObjectType * obj = ((ObjectType*)Internal_Get_List_Head());
+		ObjectType * obj = ((ObjectType*)this->Internal_Get_List_Head());
 		if (obj) {
 			obj->Add_Ref();
 		}
@@ -415,19 +415,19 @@ public:
 	ObjectType *	Peek_Head()
 	{
 		// no need to add-ref since the caller is 'peek'ing
-		return ((ObjectType*)Internal_Get_List_Head());
+		return ((ObjectType*)this->Internal_Get_List_Head());
 	}
 
 	ObjectType *	Remove_Head()
 	{
 		// our reference is transferred to the caller of this function
-		return ((ObjectType*)Internal_Remove_List_Head());
+		return ((ObjectType*)this->Internal_Remove_List_Head());
 	}
 
 	void				Reset_List()
 	{
-		while (Peek_Head() != NULL) {
-			Release_Head();
+		while (this->Peek_Head() != NULL) {
+			this->Release_Head();
 		}
 	}
 };
@@ -451,7 +451,7 @@ public:
 
 	ObjectType *	Get_Obj(void)
 	{
-		ObjectType * obj = (ObjectType*)Current_Object();
+		ObjectType * obj = (ObjectType*)this->Current_Object();
 		if (obj != NULL) {
 			obj->Add_Ref();
 		}
@@ -460,15 +460,15 @@ public:
 
 	ObjectType *	Peek_Obj(void)
 	{
-		return ((ObjectType*)Current_Object());
+		return ((ObjectType*)this->Current_Object());
 	}
 
 	void				Remove_Current_Object(void)
 	{
 		ObjectType * obj = Peek_Obj();
 		if (obj != NULL) {
-			Next();
-			((RefMultiListClass<ObjectType> *)List)->Remove(obj);
+			this->Next();
+			((RefMultiListClass<ObjectType> *)this->List)->Remove(obj);
 		}
 	}
 };
@@ -490,7 +490,7 @@ class PriorityMultiListIterator : public MultiListIterator<ObjectType>
 public:
 	PriorityMultiListIterator(MultiListClass<ObjectType> *list)
 		:	OriginalHead (NULL),
-			MultiListIterator<ObjectType>(list)			{ First (); }
+			MultiListIterator<ObjectType>(list)			{ this->First (); }
 
 	bool
 	Process_Head (ObjectType **object)
@@ -499,15 +499,15 @@ public:
 
 		//	Check to ensure we don't wrap around the list (stop after iterating
 		// the list once).
-		if (CurNode != NULL && CurNode->Object != NULL && OriginalHead != CurNode) {
-			OriginalHead		= (OriginalHead == NULL) ? CurNode : OriginalHead;
-			(*object)			= (ObjectType *)CurNode->Object;
+		if (this->CurNode != NULL && this->CurNode->Object != NULL && OriginalHead != this->CurNode) {
+			OriginalHead		= (OriginalHead == NULL) ? this->CurNode : OriginalHead;
+			(*object)			= (ObjectType *)this->CurNode->Object;
 
 
 			// Remove the node from the head of the list and
 			// add it to the tail of the list
-			Remove_Current_Object();
-			((MultiListClass<ObjectType> *)PriorityMultiListIterator::List)->Add_Tail ((*object));
+			this->Remove_Current_Object();
+			((MultiListClass<ObjectType> *)this->List)->Add_Tail ((*object));
 
 			retval = true;
 		}
