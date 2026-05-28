@@ -318,12 +318,16 @@
 #  ifndef _lrotl
      static inline unsigned long _lrotl(unsigned long value, int shift)
      {
+         shift &= (sizeof(unsigned long) * 8 - 1);
+         if (shift == 0) return value;
          return (value << shift) | (value >> (sizeof(unsigned long) * 8 - shift));
      }
 #  endif
 #  ifndef _lrotr
      static inline unsigned long _lrotr(unsigned long value, int shift)
      {
+         shift &= (sizeof(unsigned long) * 8 - 1);
+         if (shift == 0) return value;
          return (value >> shift) | (value << (sizeof(unsigned long) * 8 - shift));
      }
 #  endif
