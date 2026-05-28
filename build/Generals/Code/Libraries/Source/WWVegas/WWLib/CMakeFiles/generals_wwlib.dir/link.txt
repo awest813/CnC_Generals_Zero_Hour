@@ -1,0 +1,2 @@
+/usr/bin/ar qc libgenerals_wwlib.a CMakeFiles/generals_wwlib.dir/crc.cpp.o CMakeFiles/generals_wwlib.dir/gcd_lcm.cpp.o CMakeFiles/generals_wwlib.dir/nstrdup.cpp.o CMakeFiles/generals_wwlib.dir/strtok_r.cpp.o CMakeFiles/generals_wwlib.dir/trim.cpp.o
+/usr/bin/ranlib libgenerals_wwlib.a

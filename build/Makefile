@@ -116,6 +116,58 @@ depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+#=============================================================================
+# Target rules for targets named generals_wwmath
+
+# Build rule for target.
+generals_wwmath: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 generals_wwmath
+.PHONY : generals_wwmath
+
+# fast build rule for target.
+generals_wwmath/fast:
+	$(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/build
+.PHONY : generals_wwmath/fast
+
+#=============================================================================
+# Target rules for targets named generals_wwlib
+
+# Build rule for target.
+generals_wwlib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 generals_wwlib
+.PHONY : generals_wwlib
+
+# fast build rule for target.
+generals_wwlib/fast:
+	$(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/build
+.PHONY : generals_wwlib/fast
+
+#=============================================================================
+# Target rules for targets named generalsmd_wwmath
+
+# Build rule for target.
+generalsmd_wwmath: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 generalsmd_wwmath
+.PHONY : generalsmd_wwmath
+
+# fast build rule for target.
+generalsmd_wwmath/fast:
+	$(MAKE) $(MAKESILENT) -f GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/build.make GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/build
+.PHONY : generalsmd_wwmath/fast
+
+#=============================================================================
+# Target rules for targets named generalsmd_wwlib
+
+# Build rule for target.
+generalsmd_wwlib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 generalsmd_wwlib
+.PHONY : generalsmd_wwlib
+
+# fast build rule for target.
+generalsmd_wwlib/fast:
+	$(MAKE) $(MAKESILENT) -f GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/build.make GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/build
+.PHONY : generalsmd_wwlib/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -124,6 +176,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... generals_wwlib"
+	@echo "... generals_wwmath"
+	@echo "... generalsmd_wwlib"
+	@echo "... generalsmd_wwmath"
 .PHONY : help
 
 

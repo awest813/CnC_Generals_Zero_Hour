@@ -1,0 +1,2 @@
+/usr/bin/ar qc libgeneralsmd_wwlib.a CMakeFiles/generalsmd_wwlib.dir/crc.cpp.o CMakeFiles/generalsmd_wwlib.dir/gcd_lcm.cpp.o CMakeFiles/generalsmd_wwlib.dir/nstrdup.cpp.o CMakeFiles/generalsmd_wwlib.dir/strtok_r.cpp.o CMakeFiles/generalsmd_wwlib.dir/trim.cpp.o
+/usr/bin/ranlib libgeneralsmd_wwlib.a
