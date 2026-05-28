@@ -1,0 +1,2 @@
+/tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles/edit_cache.dir
+/tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles/rebuild_cache.dir
