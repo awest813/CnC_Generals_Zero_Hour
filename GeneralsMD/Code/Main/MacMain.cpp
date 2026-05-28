@@ -30,12 +30,12 @@ int main(int argc, char** argv)
 	(void)argv;
 
 #ifdef CNC_HAS_SDL3
-	const char* product_name = "Command & Conquer Generals Zero Hour";
-	if (SDL_SetAppMetadata(product_name, "0.0.0", "com.ea.generalszerohour") == false) {
+	const char* product_name = "Command & Conquer Generals: Zero Hour";
+	if (!SDL_SetAppMetadata(product_name, "0.0.0", "com.ea.generals.zero-hour")) {
 		std::fprintf(stderr, "%s: SDL_SetAppMetadata failed: %s\n", product_name, SDL_GetError());
 	}
 
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) == false) {
+	if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS)) {
 		std::fprintf(stderr, "%s: SDL_Init failed: %s\n", product_name, SDL_GetError());
 		return 1;
 	}
@@ -53,7 +53,7 @@ int main(int argc, char** argv)
 	SDL_Quit();
 	return 0;
 #else
-	std::fprintf(stderr, "Command & Conquer Generals Zero Hour: SDL3 is required for the macOS bootstrap target.\n");
+	std::fprintf(stderr, "Command & Conquer Generals: Zero Hour: SDL3 is required for the macOS bootstrap target.\n");
 	return 1;
 #endif
 }

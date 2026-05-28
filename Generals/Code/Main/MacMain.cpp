@@ -31,11 +31,11 @@ int main(int argc, char** argv)
 
 #ifdef CNC_HAS_SDL3
 	const char* product_name = "Command & Conquer Generals";
-	if (SDL_SetAppMetadata(product_name, "0.0.0", "com.ea.generals") == false) {
+	if (!SDL_SetAppMetadata(product_name, "0.0.0", "com.ea.generals")) {
 		std::fprintf(stderr, "%s: SDL_SetAppMetadata failed: %s\n", product_name, SDL_GetError());
 	}
 
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) == false) {
+	if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS)) {
 		std::fprintf(stderr, "%s: SDL_Init failed: %s\n", product_name, SDL_GetError());
 		return 1;
 	}
