@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build//CMakeFiles/progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
+	cd /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build && $(CMAKE_COMMAND) -E cmake_progress_start /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath//CMakeFiles/progress.marks
+	cd /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
+	cd /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,70 +103,56 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named generals_wwmath
+# Convenience name for target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/rule:
+	cd /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/rule
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/rule
 
-# Build rule for target.
-generals_wwmath: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 generals_wwmath
-.PHONY : generals_wwmath
-
-# fast build rule for target.
-generals_wwmath/fast:
-	$(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/build
-.PHONY : generals_wwmath/fast
-
-#=============================================================================
-# Target rules for targets named generals_wwlib
-
-# Build rule for target.
-generals_wwlib: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 generals_wwlib
-.PHONY : generals_wwlib
-
-# fast build rule for target.
-generals_wwlib/fast:
-	$(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/build
-.PHONY : generals_wwlib/fast
-
-#=============================================================================
-# Target rules for targets named generalsmd_wwmath
-
-# Build rule for target.
-generalsmd_wwmath: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 generalsmd_wwmath
+# Convenience name for target.
+generalsmd_wwmath: GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/rule
 .PHONY : generalsmd_wwmath
 
 # fast build rule for target.
 generalsmd_wwmath/fast:
-	$(MAKE) $(MAKESILENT) -f GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/build.make GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/build
+	cd /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build && $(MAKE) $(MAKESILENT) -f GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/build.make GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/build
 .PHONY : generalsmd_wwmath/fast
 
-#=============================================================================
-# Target rules for targets named generalsmd_wwlib
+wwmath.o: wwmath.cpp.o
+.PHONY : wwmath.o
 
-# Build rule for target.
-generalsmd_wwlib: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 generalsmd_wwlib
-.PHONY : generalsmd_wwlib
+# target to build an object file
+wwmath.cpp.o:
+	cd /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build && $(MAKE) $(MAKESILENT) -f GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/build.make GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/wwmath.cpp.o
+.PHONY : wwmath.cpp.o
 
-# fast build rule for target.
-generalsmd_wwlib/fast:
-	$(MAKE) $(MAKESILENT) -f GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/build.make GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/build
-.PHONY : generalsmd_wwlib/fast
+wwmath.i: wwmath.cpp.i
+.PHONY : wwmath.i
+
+# target to preprocess a source file
+wwmath.cpp.i:
+	cd /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build && $(MAKE) $(MAKESILENT) -f GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/build.make GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/wwmath.cpp.i
+.PHONY : wwmath.cpp.i
+
+wwmath.s: wwmath.cpp.s
+.PHONY : wwmath.s
+
+# target to generate assembly for a file
+wwmath.cpp.s:
+	cd /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build && $(MAKE) $(MAKESILENT) -f GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/build.make GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/wwmath.cpp.s
+.PHONY : wwmath.cpp.s
 
 # Help Target
 help:
@@ -176,10 +162,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... generals_wwlib"
-	@echo "... generals_wwmath"
-	@echo "... generalsmd_wwlib"
 	@echo "... generalsmd_wwmath"
+	@echo "... wwmath.o"
+	@echo "... wwmath.i"
+	@echo "... wwmath.s"
 .PHONY : help
 
 
@@ -191,6 +177,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

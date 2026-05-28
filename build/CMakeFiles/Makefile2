@@ -63,20 +63,320 @@ CMAKE_BINARY_DIR = /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all:
+all: Generals/Code/all
+all: GeneralsMD/Code/all
 .PHONY : all
 
 # The main recursive "codegen" target.
-codegen:
+codegen: Generals/Code/codegen
+codegen: GeneralsMD/Code/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: Generals/Code/preinstall
+preinstall: GeneralsMD/Code/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean:
+clean: Generals/Code/clean
+clean: GeneralsMD/Code/clean
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory Generals/Code
+
+# Recursive "all" directory target.
+Generals/Code/all: Generals/Code/Libraries/Source/WWVegas/WWMath/all
+Generals/Code/all: Generals/Code/Libraries/Source/WWVegas/WWLib/all
+Generals/Code/all: Generals/Code/Main/all
+.PHONY : Generals/Code/all
+
+# Recursive "codegen" directory target.
+Generals/Code/codegen: Generals/Code/Libraries/Source/WWVegas/WWMath/codegen
+Generals/Code/codegen: Generals/Code/Libraries/Source/WWVegas/WWLib/codegen
+Generals/Code/codegen: Generals/Code/Main/codegen
+.PHONY : Generals/Code/codegen
+
+# Recursive "preinstall" directory target.
+Generals/Code/preinstall: Generals/Code/Libraries/Source/WWVegas/WWMath/preinstall
+Generals/Code/preinstall: Generals/Code/Libraries/Source/WWVegas/WWLib/preinstall
+Generals/Code/preinstall: Generals/Code/Main/preinstall
+.PHONY : Generals/Code/preinstall
+
+# Recursive "clean" directory target.
+Generals/Code/clean: Generals/Code/Libraries/Source/WWVegas/WWMath/clean
+Generals/Code/clean: Generals/Code/Libraries/Source/WWVegas/WWLib/clean
+Generals/Code/clean: Generals/Code/Main/clean
+.PHONY : Generals/Code/clean
+
+#=============================================================================
+# Directory level rules for directory Generals/Code/Libraries/Source/WWVegas/WWLib
+
+# Recursive "all" directory target.
+Generals/Code/Libraries/Source/WWVegas/WWLib/all: Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/all
+.PHONY : Generals/Code/Libraries/Source/WWVegas/WWLib/all
+
+# Recursive "codegen" directory target.
+Generals/Code/Libraries/Source/WWVegas/WWLib/codegen: Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/codegen
+.PHONY : Generals/Code/Libraries/Source/WWVegas/WWLib/codegen
+
+# Recursive "preinstall" directory target.
+Generals/Code/Libraries/Source/WWVegas/WWLib/preinstall:
+.PHONY : Generals/Code/Libraries/Source/WWVegas/WWLib/preinstall
+
+# Recursive "clean" directory target.
+Generals/Code/Libraries/Source/WWVegas/WWLib/clean: Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/clean
+.PHONY : Generals/Code/Libraries/Source/WWVegas/WWLib/clean
+
+#=============================================================================
+# Directory level rules for directory Generals/Code/Libraries/Source/WWVegas/WWMath
+
+# Recursive "all" directory target.
+Generals/Code/Libraries/Source/WWVegas/WWMath/all: Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/all
+.PHONY : Generals/Code/Libraries/Source/WWVegas/WWMath/all
+
+# Recursive "codegen" directory target.
+Generals/Code/Libraries/Source/WWVegas/WWMath/codegen: Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/codegen
+.PHONY : Generals/Code/Libraries/Source/WWVegas/WWMath/codegen
+
+# Recursive "preinstall" directory target.
+Generals/Code/Libraries/Source/WWVegas/WWMath/preinstall:
+.PHONY : Generals/Code/Libraries/Source/WWVegas/WWMath/preinstall
+
+# Recursive "clean" directory target.
+Generals/Code/Libraries/Source/WWVegas/WWMath/clean: Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/clean
+.PHONY : Generals/Code/Libraries/Source/WWVegas/WWMath/clean
+
+#=============================================================================
+# Directory level rules for directory Generals/Code/Main
+
+# Recursive "all" directory target.
+Generals/Code/Main/all:
+.PHONY : Generals/Code/Main/all
+
+# Recursive "codegen" directory target.
+Generals/Code/Main/codegen:
+.PHONY : Generals/Code/Main/codegen
+
+# Recursive "preinstall" directory target.
+Generals/Code/Main/preinstall:
+.PHONY : Generals/Code/Main/preinstall
+
+# Recursive "clean" directory target.
+Generals/Code/Main/clean:
+.PHONY : Generals/Code/Main/clean
+
+#=============================================================================
+# Directory level rules for directory GeneralsMD/Code
+
+# Recursive "all" directory target.
+GeneralsMD/Code/all: GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/all
+GeneralsMD/Code/all: GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/all
+GeneralsMD/Code/all: GeneralsMD/Code/Main/all
+.PHONY : GeneralsMD/Code/all
+
+# Recursive "codegen" directory target.
+GeneralsMD/Code/codegen: GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/codegen
+GeneralsMD/Code/codegen: GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/codegen
+GeneralsMD/Code/codegen: GeneralsMD/Code/Main/codegen
+.PHONY : GeneralsMD/Code/codegen
+
+# Recursive "preinstall" directory target.
+GeneralsMD/Code/preinstall: GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/preinstall
+GeneralsMD/Code/preinstall: GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/preinstall
+GeneralsMD/Code/preinstall: GeneralsMD/Code/Main/preinstall
+.PHONY : GeneralsMD/Code/preinstall
+
+# Recursive "clean" directory target.
+GeneralsMD/Code/clean: GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/clean
+GeneralsMD/Code/clean: GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/clean
+GeneralsMD/Code/clean: GeneralsMD/Code/Main/clean
+.PHONY : GeneralsMD/Code/clean
+
+#=============================================================================
+# Directory level rules for directory GeneralsMD/Code/Libraries/Source/WWVegas/WWLib
+
+# Recursive "all" directory target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/all: GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/all
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/all
+
+# Recursive "codegen" directory target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/codegen: GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/codegen
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/codegen
+
+# Recursive "preinstall" directory target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/preinstall:
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/preinstall
+
+# Recursive "clean" directory target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/clean: GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/clean
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/clean
+
+#=============================================================================
+# Directory level rules for directory GeneralsMD/Code/Libraries/Source/WWVegas/WWMath
+
+# Recursive "all" directory target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/all: GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/all
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/all
+
+# Recursive "codegen" directory target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/codegen: GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/codegen
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/codegen
+
+# Recursive "preinstall" directory target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/preinstall:
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/preinstall
+
+# Recursive "clean" directory target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/clean: GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/clean
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/clean
+
+#=============================================================================
+# Directory level rules for directory GeneralsMD/Code/Main
+
+# Recursive "all" directory target.
+GeneralsMD/Code/Main/all:
+.PHONY : GeneralsMD/Code/Main/all
+
+# Recursive "codegen" directory target.
+GeneralsMD/Code/Main/codegen:
+.PHONY : GeneralsMD/Code/Main/codegen
+
+# Recursive "preinstall" directory target.
+GeneralsMD/Code/Main/preinstall:
+.PHONY : GeneralsMD/Code/Main/preinstall
+
+# Recursive "clean" directory target.
+GeneralsMD/Code/Main/clean:
+.PHONY : GeneralsMD/Code/Main/clean
+
+#=============================================================================
+# Target rules for target Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir
+
+# All Build rule for target.
+Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/all:
+	$(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/depend
+	$(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles --progress-num=7,8 "Built target generals_wwmath"
+.PHONY : Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/all
+
+# Build rule for subdir invocation for target.
+Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles 0
+.PHONY : Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/rule
+
+# Convenience name for target.
+generals_wwmath: Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/rule
+.PHONY : generals_wwmath
+
+# codegen rule for target.
+Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles --progress-num=7,8 "Finished codegen for target generals_wwmath"
+.PHONY : Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/codegen
+
+# clean rule for target.
+Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/clean:
+	$(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/clean
+.PHONY : Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/clean
+
+#=============================================================================
+# Target rules for target Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir
+
+# All Build rule for target.
+Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/all: Generals/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generals_wwmath.dir/all
+	$(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/depend
+	$(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target generals_wwlib"
+.PHONY : Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/all
+
+# Build rule for subdir invocation for target.
+Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles 8
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles 0
+.PHONY : Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/rule
+
+# Convenience name for target.
+generals_wwlib: Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/rule
+.PHONY : generals_wwlib
+
+# codegen rule for target.
+Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Finished codegen for target generals_wwlib"
+.PHONY : Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/codegen
+
+# clean rule for target.
+Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/clean:
+	$(MAKE) $(MAKESILENT) -f Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/build.make Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/clean
+.PHONY : Generals/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generals_wwlib.dir/clean
+
+#=============================================================================
+# Target rules for target GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir
+
+# All Build rule for target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/all:
+	$(MAKE) $(MAKESILENT) -f GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/build.make GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/depend
+	$(MAKE) $(MAKESILENT) -f GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/build.make GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles --progress-num=15,16 "Built target generalsmd_wwmath"
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/all
+
+# Build rule for subdir invocation for target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles 0
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/rule
+
+# Convenience name for target.
+generalsmd_wwmath: GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/rule
+.PHONY : generalsmd_wwmath
+
+# codegen rule for target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/build.make GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles --progress-num=15,16 "Finished codegen for target generalsmd_wwmath"
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/codegen
+
+# clean rule for target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/clean:
+	$(MAKE) $(MAKESILENT) -f GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/build.make GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/clean
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/clean
+
+#=============================================================================
+# Target rules for target GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir
+
+# All Build rule for target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/all: GeneralsMD/Code/Libraries/Source/WWVegas/WWMath/CMakeFiles/generalsmd_wwmath.dir/all
+	$(MAKE) $(MAKESILENT) -f GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/build.make GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/depend
+	$(MAKE) $(MAKESILENT) -f GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/build.make GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles --progress-num=9,10,11,12,13,14 "Built target generalsmd_wwlib"
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/all
+
+# Build rule for subdir invocation for target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles 8
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles 0
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/rule
+
+# Convenience name for target.
+generalsmd_wwlib: GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/rule
+.PHONY : generalsmd_wwlib
+
+# codegen rule for target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/build.make GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/tmp/workspace/awest813/CnC_Generals_Zero_Hour/build/CMakeFiles --progress-num=9,10,11,12,13,14 "Finished codegen for target generalsmd_wwlib"
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/codegen
+
+# clean rule for target.
+GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/clean:
+	$(MAKE) $(MAKESILENT) -f GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/build.make GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/clean
+.PHONY : GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/CMakeFiles/generalsmd_wwlib.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

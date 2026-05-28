@@ -1,0 +1,2 @@
+/usr/bin/ar qc libgeneralsmd_wwmath.a CMakeFiles/generalsmd_wwmath.dir/wwmath.cpp.o
+/usr/bin/ranlib libgeneralsmd_wwmath.a
