@@ -10,6 +10,7 @@
 | macOS | 13.0 (Ventura) | — |
 | Xcode Command Line Tools | 15+ | `xcode-select --install` |
 | CMake | 3.25+ | `brew install cmake` |
+| SDL3 | 3.2+ | `brew install sdl3` |
 
 ## Quick Start
 
@@ -44,6 +45,7 @@ See [MACOS_PORT_PLAN.md](../MACOS_PORT_PLAN.md) for the full engineering roadmap
 - [x] `wwmath.h` — asm blocks already had cross-platform fallbacks (verified)
 - [x] SafeDisc includes gated behind `_WIN32`
 - [x] Windows-only system headers gated behind `_WIN32`
+- [x] SDL3-backed `MacMain.cpp` bootstrap targets for both game trees
 - [x] GitHub Actions CI for macOS
 
 ### In Progress
