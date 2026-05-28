@@ -33,15 +33,17 @@
  *---------------------------------------------------------------------------------------------*
  * Functions:                                                                                  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-#if _MSC_VER >= 1000
+#if defined(_MSC_VER) && _MSC_VER >= 1000
 #pragma once
-#endif // _MSC_VER >= 1000
+#endif
 
 #ifndef ALWAYS_H
 #define ALWAYS_H
 
 // Disable warning about exception handling not being enabled. It's used as part of STL - in a part of STL we don't use.
+#if defined(_MSC_VER)
 #pragma warning(disable : 4530)
+#endif
 
 /*
 ** Define for debug memory allocation to include __FILE__ and __LINE__ for every memory allocation.
@@ -84,6 +86,8 @@ void* __cdecl operator new(unsigned int s);
 // and also prints out a warning if inlining wasn't possible. __forceinline is MSVC specific.
 #if defined(_MSC_VER)
 #define WWINLINE __forceinline
+#elif defined(__GNUC__) || defined(__clang__)
+#define WWINLINE inline __attribute__((always_inline))
 #else
 #define WWINLINE inline
 #endif

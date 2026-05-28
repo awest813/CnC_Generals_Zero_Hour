@@ -31,6 +31,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 // SYSTEM INCLUDES ////////////////////////////////////////////////////////////
+#ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN  // only bare bones windows stuff wanted
 #include <windows.h>
 #include <stdlib.h>
@@ -38,6 +39,7 @@
 #include <eh.h>
 #include <ole2.h>
 #include <dbt.h>
+#endif
 
 // USER INCLUDES //////////////////////////////////////////////////////////////
 #include "WinMain.h"
@@ -49,7 +51,9 @@
 #include "Common/GameSounds.h"
 #include "Common/Debug.h"
 #include "Common/GameMemory.h"
+#ifdef _WIN32
 #include "Common/SafeDisc/CdaPfn.h"
+#endif
 #include "Common/StackDump.h"
 #include "Common/MessageStream.h"
 #include "Common/Team.h"

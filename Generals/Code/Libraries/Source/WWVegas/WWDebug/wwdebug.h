@@ -105,7 +105,11 @@ void					WWDebug_DBWin32_Message_Handler( const char * message);
 ** WWDEBUG_SAY(("dir = %f\n",dir));
 */
 
-#include "..\..\..\..\gameengine\include\common\debug.h"
+#if defined(_WIN32)
+#include "..\\..\\..\\..\\gameengine\\include\\common\\debug.h"
+#else
+#include "Common/Debug.h"
+#endif
 
 #ifdef DEBUG_LOGGING
 #define WWDEBUG_SAY(x)							DEBUG_LOG(x)
@@ -117,7 +121,10 @@ void					WWDebug_DBWin32_Message_Handler( const char * message);
 
 // WW3d is compiled at warning level 4, causes DEBUG_ASSERTCRASH to generate 
 // the 4127 warning (constant conditional expression)
+
+#if defined(_MSC_VER)
 #pragma warning(disable:4127)
+#endif
 /*
 ** The WWASSERT and WWASSERT_PRINT macros will send messages to your
 ** assert handler.

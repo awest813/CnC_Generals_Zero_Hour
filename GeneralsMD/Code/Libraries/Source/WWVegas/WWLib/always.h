@@ -33,17 +33,22 @@
  *---------------------------------------------------------------------------------------------*
  * Functions:                                                                                  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-#if _MSC_VER >= 1000
+#if defined(_MSC_VER) && _MSC_VER >= 1000
 #pragma once
-#endif // _MSC_VER >= 1000
+#endif
 
 #ifndef ALWAYS_H
 #define ALWAYS_H
 
+// Cross-platform compatibility macros
+#include "Platform/Include/Platform.h"
+
 #include <assert.h>
 
 // Disable warning about exception handling not being enabled. It's used as part of STL - in a part of STL we don't use.
+#if defined(_MSC_VER)
 #pragma warning(disable : 4530)
+#endif
 
 /*
 ** Define for debug memory allocation to include __FILE__ and __LINE__ for every memory allocation.
@@ -77,23 +82,25 @@
 
 	#define _OPERATOR_NEW_DEFINED_
 
-	extern void * __cdecl operator new		(size_t size);
-	extern void __cdecl operator delete		(void *p);
+	#include <cstddef>  // std::size_t
 
-	extern void * __cdecl operator new[]	(size_t size);
-	extern void __cdecl operator delete[]	(void *p);
+	extern void * __cdecl operator new		(std::size_t size);
+	extern void __cdecl operator delete		(void *p) noexcept;
+
+	extern void * __cdecl operator new[]	(std::size_t size);
+	extern void __cdecl operator delete[]	(void *p) noexcept;
 
 	// additional overloads to account for VC/MFC funky versions
-	extern void* __cdecl operator new			(size_t nSize, const char *, int);
+	extern void* __cdecl operator new			(std::size_t nSize, const char *, int);
 	extern void __cdecl operator delete		(void *, const char *, int);
 
-	extern void* __cdecl operator new[]		(size_t nSize, const char *, int);
+	extern void* __cdecl operator new[]		(std::size_t nSize, const char *, int);
 	extern void __cdecl operator delete[]	(void *, const char *, int);
 
 	// additional overloads for 'placement new'
-	//inline void* __cdecl operator new							(size_t s, void *p) { return p; }
+	//inline void* __cdecl operator new							(std::size_t s, void *p) { return p; }
 	//inline void __cdecl operator delete						(void *, void *p)		{ }
-	inline void* __cdecl operator new[]						(size_t s, void *p) { return p; }
+	inline void* __cdecl operator new[]						(std::size_t s, void *p) { return p; }
 	inline void __cdecl operator delete[]					(void *, void *p)		{ }
 
 #endif
@@ -171,8 +178,12 @@ public:
 
 // Jani: MSVC doesn't necessarily inline code with inline keyword. Using __forceinline results better inlining
 // and also prints out a warning if inlining wasn't possible. __forceinline is MSVC specific.
+// Note: On non-MSVC compilers, __forceinline is defined in Platform.h as
+//       inline __attribute__((always_inline))
 #if defined(_MSC_VER)
 #define WWINLINE __forceinline
+#elif defined(__GNUC__) || defined(__clang__)
+#define WWINLINE inline __attribute__((always_inline))
 #else
 #define WWINLINE inline
 #endif
@@ -236,6 +247,11 @@ template <class T> T max(T a,T b)
 
 #if defined(__WATCOMC__)
 #include	"watcom.h"
+#endif
+
+// On non-MSVC platforms, ensure size_t is available
+#if !defined(_MSC_VER)
+#include <cstddef>
 #endif
 
 

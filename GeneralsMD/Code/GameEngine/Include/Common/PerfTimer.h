@@ -26,7 +26,9 @@
 // John McDonald
 // July 2002
 
+#if defined(_MSC_VER)
 #pragma once
+#endif
 
 #ifndef __PERFTIMER_H__
 #define __PERFTIMER_H__
@@ -42,6 +44,12 @@
 #endif
 
 #include "Common/GameCommon.h"	// ensure we get DUMP_PERF_STATS, or not
+
+#if defined(__APPLE__)
+#include <mach/mach_time.h>
+#elif !defined(_MSC_VER)
+#include <time.h>
+#endif
 
 #ifdef PERF_TIMERS
 #include "GameLogic/GameLogic.h"
@@ -70,7 +78,7 @@ __forceinline void GetPrecisionTimer(Int64* t)
 {
 #ifdef USE_QPF
 	QueryPerformanceCounter((LARGE_INTEGER*)t);
-#else
+#elif defined(_MSC_VER) && defined(_M_IX86)
 	// CPUID is needed to force serialization of any previous instructions. 
 	__asm 
 	{
@@ -81,6 +89,13 @@ __forceinline void GetPrecisionTimer(Int64* t)
 		MOV [ECX], EAX
 		MOV [ECX+4], EDX
 	}
+#elif defined(__APPLE__)
+	*t = (Int64)mach_absolute_time();
+#else
+	// POSIX fallback
+	struct timespec ts;
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	*t = (Int64)ts.tv_sec * 1000000000LL + (Int64)ts.tv_nsec;
 #endif
 }
 #endif

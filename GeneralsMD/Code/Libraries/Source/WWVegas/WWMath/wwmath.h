@@ -306,35 +306,14 @@ WWINLINE bool WWMath::Is_Valid_Double(double x)
 // Float to long
 // ----------------------------------------------------------------------------
 
-#if defined(_MSC_VER) && defined(_M_IX86)
 WWINLINE long WWMath::Float_To_Long(float f)
 {
-	long i;
-
-	__asm {
-		fld [f]
-		fistp [i]
-	}
-
-	return i;
+	return static_cast<long>(f);
 }
-#else 
-WWINLINE long WWMath::Float_To_Long(float f)
-{
-	return (long) f;
-}
-#endif
 
 WWINLINE long WWMath::Float_To_Long(double f)	
 {
-#if defined(_MSC_VER) && defined(_M_IX86)
-	long retval;
-	__asm fld	qword ptr [f]
-	__asm fistp dword ptr [retval]
-	return retval;
-#else 
-	return (long) f;
-#endif
+	return static_cast<long>(f);
 }
 
 // ----------------------------------------------------------------------------
