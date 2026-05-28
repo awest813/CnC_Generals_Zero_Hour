@@ -40,6 +40,8 @@
 #ifndef WIN_H
 #define WIN_H
 
+#include "always.h"
+
 /*
 **	This header file includes the Windows headers. If there are any special pragmas that need
 **	to occur around this process, they are performed here. Typically, certain warnings will need
@@ -48,6 +50,8 @@
 **	Within the windows headers themselves, Microsoft has disabled the warnings 4290, 4514, 
 **	4069, 4200, 4237, 4103, 4001, 4035, 4164. Makes you wonder, eh?
 */
+
+#ifdef PLATFORM_WINDOWS
 
 // When including windows, lets just bump the warning level back to 3...
 #if (_MSC_VER >= 1200)
@@ -68,6 +72,8 @@
 #if (_MSC_VER >= 1200)
 #pragma warning(pop)
 #endif
+
+#endif // PLATFORM_WINDOWS
 
 #ifdef _WINDOWS
 extern HINSTANCE	ProgramInstance;

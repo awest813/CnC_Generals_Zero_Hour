@@ -151,6 +151,9 @@
 #  ifndef __cdecl
 #    define __cdecl
 #  endif
+#  ifndef _cdecl
+#    define _cdecl
+#  endif
 #  ifndef __stdcall
 #    define __stdcall
 #  endif
@@ -229,6 +232,9 @@
 #  ifndef stricmp
 #    define stricmp     strcasecmp
 #  endif
+#  ifndef strcmpi
+#    define strcmpi     strcasecmp
+#  endif
 #  ifndef strnicmp
 #    define strnicmp    strncasecmp
 #  endif
@@ -241,6 +247,8 @@
 #  ifndef _strdup
 #    define _strdup     strdup
 #  endif
+#  include <ctype.h>    // for tolower / toupper used below
+
 #  ifndef _strlwr
      // POSIX has no direct equivalent; provide inline helper
      static inline char* _strlwr(char* s)
@@ -302,7 +310,20 @@
 #    define _copysign copysign
 #  endif
 
-#  include <ctype.h>    // for tolower / toupper used above
+   // Bit-rotation intrinsics (MSVC CRT)
+#  ifndef _lrotl
+     static inline unsigned long _lrotl(unsigned long value, int shift)
+     {
+         return (value << shift) | (value >> (sizeof(unsigned long) * 8 - shift));
+     }
+#  endif
+#  ifndef _lrotr
+     static inline unsigned long _lrotr(unsigned long value, int shift)
+     {
+         return (value >> shift) | (value << (sizeof(unsigned long) * 8 - shift));
+     }
+#  endif
+
 #endif // !COMPILER_MSVC
 
 // -------------------------------------------------------------------------

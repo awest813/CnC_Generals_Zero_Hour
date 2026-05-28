@@ -27,7 +27,7 @@
 #include <stdio.h>
 #ifdef _UNIX
 #include "osdep.h"
-#else
+#elif defined(PLATFORM_WINDOWS)
 #include "win.h"
 #include <process.h>
 #endif
@@ -152,7 +152,7 @@ void SecureRandomClass::Generate_Seed(void)
 	}
 	else
 		assert(0);
-#else
+#elif defined(PLATFORM_WINDOWS)
 
 	//
 	// Get free drive space
@@ -181,6 +181,15 @@ void SecureRandomClass::Generate_Seed(void)
 		Seeds[(i+2) % SeedLength]^=user_name[i];
 	}
 
+#else
+	// POSIX fallback: use /dev/urandom
+	FILE *in=fopen("/dev/urandom","r");
+	if (in)
+	{
+		for (i=0; i<SeedLength; i++)
+			Seeds[i]^=fgetc(in); 
+		fclose(in);
+	}
 #endif
 
 	for (i=0; i<int_seed_length; i++)

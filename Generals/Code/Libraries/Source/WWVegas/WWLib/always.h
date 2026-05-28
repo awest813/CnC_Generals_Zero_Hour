@@ -80,6 +80,7 @@
 
 	#define _OPERATOR_NEW_DEFINED_
 
+#ifdef _MSC_VER
 	extern void * __cdecl operator new		(size_t size);
 	extern void __cdecl operator delete		(void *p);
 
@@ -98,6 +99,10 @@
 	//inline void __cdecl operator delete						(void *, void *p)		{ }
 	inline void* __cdecl operator new[]						(size_t s, void *p) { return p; }
 	inline void __cdecl operator delete[]					(void *, void *p)		{ }
+#else
+	// On non-MSVC compilers, use the standard placement new from <new>.
+#include <new>
+#endif
 
 #endif
 

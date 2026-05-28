@@ -45,7 +45,26 @@
 #include "mutex.h"
 #include <string.h>
 #include <stdarg.h>
+#ifdef _MSC_VER
 #include <tchar.h>
+#else
+// TCHAR is a Windows concept; on non-Windows, just use char.
+#ifndef _TCHAR_DEFINED
+#define _TCHAR_DEFINED
+typedef char TCHAR;
+#define _T(x) x
+#define _tcslen strlen
+#define _tcscpy strcpy
+#define _tcsncpy strncpy
+#define _tcscat strcat
+#define _tcscmp strcmp
+#define _tcsicmp strcasecmp
+#define _stprintf sprintf
+#define _vstprintf vsprintf
+#define _sntprintf snprintf
+#define _tcsclen strlen
+#endif
+#endif
 #include <wwdebug.h>
 #ifdef _UNIX
 #include "osdep.h"
@@ -118,7 +137,7 @@ public:
 
 	void			Erase (int start_index, int char_count);
 	int _cdecl  Format (const TCHAR *format, ...);
-	int _cdecl  Format_Args (const TCHAR *format, const va_list & arg_list );
+	int _cdecl  Format_Args (const TCHAR *format, va_list arg_list );
 
 	TCHAR *		Get_Buffer (int new_length);
 	TCHAR *		Peek_Buffer (void);

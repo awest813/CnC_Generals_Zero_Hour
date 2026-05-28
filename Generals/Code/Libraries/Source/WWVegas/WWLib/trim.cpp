@@ -40,9 +40,9 @@
 #include	<stddef.h>
 #include	<string.h>
 
-#ifdef _UNIX
+#ifndef PLATFORM_WINDOWS
 #include	<wctype.h>
-#endif // _UNIX
+#endif
 
 /*********************************************************************************************** 
  * strtrim -- Trim leading and trailing white space off of string.                             * 

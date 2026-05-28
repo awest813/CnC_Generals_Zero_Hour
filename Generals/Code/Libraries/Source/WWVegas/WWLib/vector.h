@@ -486,6 +486,12 @@ template<class T>
 class DynamicVectorClass : public VectorClass<T>
 {
 	public:
+		// Pull base class members into scope for standard C++ compilers
+		using VectorClass<T>::Length;
+		using VectorClass<T>::Vector;
+		using VectorClass<T>::VectorMax;
+		using VectorClass<T>::IsAllocated;
+
 		DynamicVectorClass(unsigned size=0, T const * array=0);
 
 		// Stubbed equality operators so you can have dynamic vectors of dynamic vectors
