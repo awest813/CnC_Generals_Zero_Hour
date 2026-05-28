@@ -30,6 +30,7 @@ int main(int argc, char** argv)
 	(void)argv;
 
 #ifdef CNC_HAS_SDL3
+	constexpr int event_timeout_ms = 100;
 	const char* product_name = "Command & Conquer Generals: Zero Hour";
 	if (!SDL_SetAppMetadata(product_name, "0.0.0", "com.ea.generals.zero-hour")) {
 		std::fprintf(stderr, "%s: SDL_SetAppMetadata failed: %s\n", product_name, SDL_GetError());
@@ -59,7 +60,7 @@ int main(int argc, char** argv)
 
 	while (running) {
 		SDL_Event event;
-		if (!SDL_WaitEventTimeout(&event, 100)) {
+		if (!SDL_WaitEventTimeout(&event, event_timeout_ms)) {
 			continue;
 		}
 		handle_event(event);
