@@ -18,11 +18,32 @@
 
 #if defined(__APPLE__)
 
+#include "Platform/Include/ILocalFileSystem.h"
+#include "Platform/Include/PathUtil.h"
+#include "Platform/Include/PlatformConfig.h"
+
 #include <cstdio>
+#include <string>
 
 #ifdef CNC_HAS_SDL3
 #include <SDL3/SDL.h>
 #endif
+
+namespace {
+
+void InitializePlatformServices(const char* product_name)
+{
+	auto file_system = Platform::CreateLocalFileSystem();
+	const std::string user_data = Platform::Path::UserDataDirectory();
+	std::fprintf(stderr, "%s: user data directory: %s (exists=%s)\n", product_name, user_data.c_str(),
+		file_system->Exists(user_data) ? "yes" : "no");
+
+	auto config = Platform::CreatePlatformConfig();
+	config->Set("BootstrapVersion", "1");
+	config->Save();
+}
+
+} // namespace
 
 int main(int argc, char** argv)
 {
@@ -32,6 +53,8 @@ int main(int argc, char** argv)
 #ifdef CNC_HAS_SDL3
 	constexpr int event_timeout_ms = 100;
 	const char* product_name = "Command & Conquer Generals";
+	InitializePlatformServices(product_name);
+
 	if (!SDL_SetAppMetadata(product_name, "0.0.0", "com.ea.generals")) {
 		std::fprintf(stderr, "%s: SDL_SetAppMetadata failed: %s\n", product_name, SDL_GetError());
 	}

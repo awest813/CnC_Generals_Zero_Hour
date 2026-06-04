@@ -47,12 +47,15 @@ See [MACOS_PORT_PLAN.md](../MACOS_PORT_PLAN.md) for the full engineering roadmap
 - [x] Windows-only system headers gated behind `_WIN32`
 - [x] SDL3-backed `MacMain.cpp` bootstrap targets for both game trees
 - [x] GitHub Actions CI for macOS
+- [x] Platform Abstraction Layer (`generals_platform` / `generalsmd_platform` CMake targets)
+- [x] PAL: INI config, `std::thread` / `std::mutex`, POSIX local file system
+- [x] macOS bootstrap links PAL and writes initial `config.ini` on launch
 
 ### In Progress
 
 - [ ] CMake sub-projects for GameEngine, Libraries
 - [ ] Full engine compilation on Clang
-- [ ] Platform Abstraction Layer (file I/O, threading, config)
+- [ ] PAL: local file read/write abstraction (`ILocalFile`)
 
 ## Architecture
 
@@ -60,8 +63,8 @@ The port uses a Platform Abstraction Layer (PAL) approach:
 
 ```
 Code/Platform/Include/Platform.h    ← Cross-platform macros
-Code/Platform/Include/...           ← PAL interfaces (future)
-Code/Platform/Source/Mac/...        ← macOS implementations (future)
+Code/Platform/Include/...           ← PAL interfaces (config, threading, file system)
+Code/Platform/Source/Mac/...        ← macOS / POSIX implementations
 ```
 
 Existing Win32 implementations remain untouched. New macOS implementations
