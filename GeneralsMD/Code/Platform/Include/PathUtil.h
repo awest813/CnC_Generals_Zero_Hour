@@ -46,11 +46,11 @@ inline std::string UserDataDirectory()
     std::string base = home ? home : "";
 
 #if defined(__APPLE__)
-    return Normalize(base + "/Library/Application Support/CnCGenerals/");
+    return Normalize(base + "/Library/Application Support/CnCGeneralsZeroHour/");
 #elif defined(_WIN32)
     return ".\\";
 #else
-    return Normalize(base + "/.local/share/CnCGenerals/");
+    return Normalize(base + "/.local/share/CnCGeneralsZeroHour/");
 #endif
 }
 

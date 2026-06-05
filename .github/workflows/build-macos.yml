@@ -26,15 +26,23 @@ jobs:
 
     - name: Configure CMake
       run: |
+        rm -rf build
         cmake -B build \
           -DCMAKE_BUILD_TYPE=Debug \
           -DBUILD_ZEROHOUR=ON \
           -DBUILD_TOOLS=OFF
 
-    - name: Build
+    - name: Build PAL and bootstrap targets
       run: |
-        cmake --build build --parallel $(sysctl -n hw.ncpu) 2>&1 || true
-        echo "Build attempted — failures expected during early port phases."
+        cmake --build build --parallel $(sysctl -n hw.ncpu) \
+          --target generals_platform \
+          --target generalsmd_platform \
+          --target generals_wwmath \
+          --target generals_wwlib \
+          --target generalsmd_wwmath \
+          --target generalsmd_wwlib \
+          --target generals_macos_main \
+          --target generalsmd_macos_main
 
     - name: Summary
       run: |
@@ -43,3 +51,4 @@ jobs:
         echo "- Arch: $(uname -m)" >> $GITHUB_STEP_SUMMARY
         echo "- CMake: $(cmake --version | head -1)" >> $GITHUB_STEP_SUMMARY
         echo "- Clang: $(clang --version | head -1)" >> $GITHUB_STEP_SUMMARY
+        echo "- Targets: PAL, WWMath/WWLib, SDL3 bootstrap mains" >> $GITHUB_STEP_SUMMARY

@@ -2,9 +2,12 @@ set(WWLIB_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/crc.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gcd_lcm.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/nstrdup.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/strtok_r.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/trim.cpp
 )
+
+if(WIN32)
+    list(APPEND WWLIB_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/strtok_r.cpp)
+endif()
 
 add_library(generalsmd_wwlib STATIC ${WWLIB_SOURCES})
 
